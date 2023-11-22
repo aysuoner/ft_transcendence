@@ -1,0 +1,10 @@
+venv olusturmak icin
+python3 -m venv tutorial-env
+
+
+venv aktif etmek için
+source virtualenv/bin/activate
+
+django-admin startproject user_management ==> ile yeni bir django PROJESİ olusturdum adı "user_management"
+
+python manage.py startapp users ==> yeni bir APP baslatiyorum adı "users"
