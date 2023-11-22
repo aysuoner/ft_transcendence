@@ -1,0 +1,44 @@
+body {
+	font-family:"Space Mono", sans-serif;
+    background-image: url('/static/img/pong1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .custom-right-column {
+        padding-right: 0; /* veya istediğiniz değeri belirleyin */
+    }
+}
+
+  .form-control:focus {
+	box-shadow: none;
+	border-color: #BA68C8;
+  }
+  
+  .profile-button {
+	background: #BA68C8;
+	box-shadow: none;
+	border: none;
+  }
+  
+  .profile-button:hover {
+	background: #682773;
+  }
+  
+  .profile-button:focus {
+	background: #682773;
+	box-shadow: none;
+  }
+  
+  .profile-button:active {
+	background: #682773;
+	box-shadow: none;
+  }
+  
+  .back:hover {
+	color: #682773;
+	cursor: pointer;
+  }
