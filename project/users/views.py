@@ -1,45 +1,18 @@
-from django.shortcuts import render, redirect 
-from django.contrib import messages
-from django.views import View 
-#from django.views import View demek: django.views içindeki View class'ını kullan demektir. view class get ve post methodlarını kullanmamızı sağlar.
-
-from .forms import RegisterForm #users klasorundaki forms.py dosyaını buluyor ve içindeki RegisterForm class'ını kullanıyor.
- 
-from django.http import HttpResponse, Http404 #SPA
+from django.shortcuts import render
+from django.http import HttpResponse, Http404
 
 
-#views.py dosyasında requestlere response donduren fonksiyonlar bulunur.
 # Create your views here.
-#views.py içinde tanımlanan fonksiyonlar urls.py içinde tanımlanan pathler ile eşleşir.
-#pathler ile eşleşen fonksiyonlar çalıştırılır.
-#bu fonksiyonlar render ile bahsi gecen html sayfalarını çağırır.
-#yani view.py'nin amaci html sayfalarini çağırmak ve bu sayfalari kullaniciya göstermektir.
-#home(request) demek home.html sayfasini çağır demektir.
+def index(request):
+    return render(request, "singlepage/index.html")
 
-def home(request):
-    return render(request, 'users/home.html')
 
-class RegisterView(View):
-    form_class = RegisterForm
-    initial = {'key': 'value'}
-    template_name = 'users/register.html' #burada Django içindeki forms classını override ederek kendi form classımızı oluşturduk.
+texts = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tortor mauris, maximus semper volutpat vitae, varius placerat dui. Nunc consequat dictum est, at vestibulum est hendrerit at. Mauris suscipit neque ultrices nisl interdum accumsan. Sed euismod, ligula eget tristique semper, lecleo mi nec orci. Curabitur hendrerit, est in ",
+        "Praesent euismod auctor quam, id congue tellus malesuada vitae. Ut sed lacinia quam. Sed vitae mattis metus, vel gravida ante. Praesent tincidunt nulla non sapien tincidunt, vitae semper diam faucibus. Nulla venenatis tincidunt efficitur. Integer justo nunc, egestas eget dignissim dignissim,  facilisis, dictum nunc ut, tincidunt diam.",
+        "Morbi imperdiet nunc ac quam hendrerit faucibus. Morbi viverra justo est, ut bibendum lacus vehicula at. Fusce eget risus arcu. Quisque dictum porttitor nisl, eget condimentum leo mollis sed. Proin justo nisl, lacinia id erat in, suscipit ultrices nisi. Suspendisse placerat nulla at volutpat ultricies"]
 
-    def get(self, request, *args, **kwargs): #İstek get ise, boş bir formun yeni bir örneğini oluşturur.
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
-
-#İstek gönderiliyorsa, -- Gönderi verileriyle formun yeni bir örneğini oluşturur.
-#Ardından form.is_valid() yöntemini çağırarak formun geçerli olup olmadığını kontrol eder. 
-#Daha sonra form geçerliyse, temizlenen form verilerini işleyin ve kullanıcıyı veritabanımıza kaydedin.
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            form.save()
-
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}') #home sayfasında kullanıcının giriş yaptığı username'i gösterilir. başarılı bir giriş olduğu için
-
-            return redirect(to='/')
-
-        return render(request, self.template_name, {'form': form})
+def section(request, num):
+    if 1 <= num <= 3:
+        return HttpResponse(texts[num-1])
+    else:
+        raise Http404("No such section")
