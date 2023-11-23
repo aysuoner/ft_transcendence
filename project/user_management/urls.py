@@ -14,6 +14,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+
 """ django.urls'den include() işlevini cagirarak users-app'in
 uygulama urls modülünü(users/urls.py) ana projenin urls modülüne(user-mamagent/urls.py) dahil etmemiz gerekiyor. """
 """ bu dosyanin amaci ana projenin urls.py dosyasina users-app'in urls.py dosyasini dahil etmektir. """

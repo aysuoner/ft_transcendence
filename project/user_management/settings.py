@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 # users ==> ekleme sebebim debug yaparken kolaylık olması.
+#ayrıca oluşturduğumuz app'leri burada django'ya tanıtmamız gerekiyor.
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

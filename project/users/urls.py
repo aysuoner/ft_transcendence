@@ -1,5 +1,6 @@
 from django.urls import path
-from . import views
+from . import views # bu dizi içindeki views.py dosyasını kullan demektir.
+from django.urls import path
 # from . import views demek: bu dizindeki views.py dosyasını kullan demektir.
 
 #urls.py içinde tanımlanan pathler ile views.py içinde tanımlanan fonksiyonlar eşleşir.
@@ -11,4 +12,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='users-home'),
+	path('register/', views.RegisterView.as_view(), name='users-register'),
 ]
